@@ -7,13 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export const getSystemTheme = (): 'light' | 'dark' => {
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  const handleThemeChange = () => {
-    return mediaQuery.matches ? 'dark' : 'light';
-  };
-
-  if (mediaQuery) {
-    mediaQuery.addEventListener('change', handleThemeChange);
-  }
-  return 'light';
+  return mediaQuery.matches ? 'dark' : 'light';
 };
+
 

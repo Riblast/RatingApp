@@ -32,9 +32,11 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen bg-gray-900 text-white">
       <main className="flex-1 p-4 space-y-4">
-        <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-lg text-lg">
-          Create new rating
-        </Button>
+        <Link to="/newrating">
+          <Button className="w-full bg-green-600 hover:bg-green-700 h-16 text-white font-semibold py-3 rounded-lg text-lg">
+            Create new rating
+          </Button>
+        </Link>
         <Button className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-3 rounded-lg text-lg">
           Join to rate
         </Button>
@@ -44,7 +46,7 @@ export default function Home() {
             placeholder="Search ratings..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-grow"
+            className="flex-grow text-gray-400 border-gray-700"
           >
           </Input>
           <DropdownMenu>
@@ -63,10 +65,10 @@ export default function Home() {
         </div>
         <ScrollArea className="h-[calc(100vh-320px)]">
           {filteredRatings.map((rating) => (
-            <Card key={rating.id} className="bg-gray-800 mb-2">
+            <Card key={rating.id} className="bg-gray-800 mb-2 border-gray-700">
               <CardContent className="p-4 flex justify-between items-center">
                 <div>
-                  <span className="font-medium">{rating.name}</span>
+                  <span className="font-medium text-white">{rating.name}</span>
                   <Badge variant={rating.status === "Open" ? "default" : "secondary"} className="ml-2">
                     {rating.status}
                   </Badge>

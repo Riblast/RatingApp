@@ -53,26 +53,26 @@ export default function FriendsManagement() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white">
       <main className="flex-1 p-4 space-y-4">
-        <Card className="bg-gray-800">
+        <Card className="bg-gray-800 border-gray-700">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold">Friends Management</CardTitle>
+            <CardTitle className="text-2xl font-bold text-white">Friends Management</CardTitle>
             <CardDescription>View and manage your friends</CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="friends">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="friends">Friends</TabsTrigger>
-                <TabsTrigger value="requests">Friend Requests</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 bg-[#2a3346]">
+                <TabsTrigger value="friends" className="data-[state=active]:bg-[#3a4357] data-[state=active]:text-white">Friends</TabsTrigger>
+                <TabsTrigger value="requests" className="data-[state=active]:bg-[#3a4357] data-[state=active]:text-white">Friend Requests</TabsTrigger>
               </TabsList>
               <TabsContent value="friends">
                 <div className="space-y-4">
                   <div className="relative">
-                    <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                    <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground text-white" />
                     <Input
                       placeholder="Search friends..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-8"
+                      className="pl-8 border-gray-600 text-gray-400"
                     />
                   </div>
                   <ScrollArea className="h-[300px]">
@@ -84,11 +84,11 @@ export default function FriendsManagement() {
                             <AvatarFallback>{friend.name.charAt(0)}</AvatarFallback>
                           </Avatar>
                           <div>
-                            <p className="font-medium">{friend.name}</p>
+                            <p className="font-medium text-white">{friend.name}</p>
                             <p className="text-sm text-gray-400">{friend.username}</p>
                           </div>
                         </div>
-                        <Button variant="ghost" size="sm">View Profile</Button>
+                        <Button variant="ghost" size="sm" className="text-white">View Profile</Button>
                       </div>
                     ))}
                   </ScrollArea>
@@ -104,7 +104,7 @@ export default function FriendsManagement() {
                           <AvatarFallback>{request.name.charAt(0)}</AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="font-medium">{request.name}</p>
+                          <p className="font-medium text-white">{request.name}</p>
                           <p className="text-sm text-gray-400">{request.username}</p>
                         </div>
                       </div>
@@ -120,14 +120,14 @@ export default function FriendsManagement() {
           </CardContent>
         </Card>
 
-        <Card className="bg-gray-800">
+        <Card className="bg-gray-800 border-gray-700">
           <CardHeader>
-            <CardTitle>Add New Friend</CardTitle>
+            <CardTitle className="text-white">Add New Friend</CardTitle>
             <CardDescription>Search for users to add as friends</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex space-x-2">
-              <Input placeholder="Search by username or email" className="flex-grow" />
+              <Input placeholder="Search by username or email" className="flex-grow border-gray-600" />
               <Button>
                 <UserPlus className="mr-2 h-4 w-4" />
                 Add Friend

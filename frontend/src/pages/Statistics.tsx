@@ -19,88 +19,66 @@ const mockData = [
 
 export default function StatsGraph() {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
+    <div className="flex flex-col space-y-4 bg-[#1a1f2e] min-h-screen text-gray-100">
       <main className="flex-1 p-4 space-y-4">
-        <Card className="bg-gray-800">
+        <Card className="bg-[#232a3b] border-gray-700">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold">Stats Improvement</CardTitle>
-            <CardDescription>Track your progress over time</CardDescription>
+            <CardTitle className="text-2xl font-semibold text-white">Stats Improvement</CardTitle>
+            <CardDescription className="text-gray-400">Track your progress over time</CardDescription>
           </CardHeader>
           <CardContent>
-            <Tabs defaultValue="totalRatings">
-              <div className="flex justify-between items-center mb-4">
-                <TabsList>
-                  <TabsTrigger value="totalRatings">Total Ratings</TabsTrigger>
-                  <TabsTrigger value="averageRating">Average Rating</TabsTrigger>
-                  <TabsTrigger value="helpfulnessScore">Helpfulness Score</TabsTrigger>
+            <Tabs defaultValue="totalRatings" className="space-y-4">
+              <div className="flex justify-between items-center">
+                <TabsList className="bg-[#2a3346]">
+                  <TabsTrigger value="totalRatings" className="data-[state=active]:bg-[#3a4357] data-[state=active]:text-white">Total Ratings</TabsTrigger>
+                  <TabsTrigger value="averageRating" className="data-[state=active]:bg-[#3a4357] data-[state=active]:text-white">Average Rating</TabsTrigger>
+                  <TabsTrigger value="helpfulnessScore" className="data-[state=active]:bg-[#3a4357] data-[state=active]:text-white">Helpfulness Score</TabsTrigger>
                 </TabsList>
-                <Select defaultValue="6months">
-                  <SelectTrigger className="w-[180px]">
+                <Select defaultValue="lastMonth">
+                  <SelectTrigger className="w-[180px] bg-[#2a3346] border-gray-600 text-white">
                     <SelectValue placeholder="Select time range" />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="1month">Last Month</SelectItem>
-                    <SelectItem value="3months">Last 3 Months</SelectItem>
-                    <SelectItem value="6months">Last 6 Months</SelectItem>
-                    <SelectItem value="1year">Last Year</SelectItem>
+                  <SelectContent className="bg-[#2a3346] border-gray-600">
+                    <SelectItem value="lastMonth" className="text-white">Last Month</SelectItem>
+                    <SelectItem value="last3Months" className="text-white">Last 3 Months</SelectItem>
+                    <SelectItem value="last6Months" className="text-white">Last 6 Months</SelectItem>
+                    <SelectItem value="lastYear" className="text-white">Last Year</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
-              <TabsContent value="totalRatings">
+              <TabsContent value="totalRatings" className="space-y-4">
                 <ChartContainer
                   config={{
                     totalRatings: {
                       label: "Total Ratings",
-                      color: "hsl(var(--chart-1))",
+                      color: "rgb(59, 130, 246)",
                     },
                   }}
                   className="h-[300px]"
                 >
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={mockData}>
-                      <XAxis dataKey="month" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                      <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}`} />
-                      <Line type="monotone" dataKey="totalRatings" strokeWidth={2} dot={false} />
-                      <ChartTooltip content={<ChartTooltipContent />} />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </ChartContainer>
-              </TabsContent>
-              <TabsContent value="averageRating">
-                <ChartContainer
-                  config={{
-                    averageRating: {
-                      label: "Average Rating",
-                      color: "hsl(var(--chart-2))",
-                    },
-                  }}
-                  className="h-[300px]"
-                >
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={mockData}>
-                      <XAxis dataKey="month" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                      <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}`} domain={[0, 5]} />
-                      <Line type="monotone" dataKey="averageRating" strokeWidth={2} dot={false} />
-                      <ChartTooltip content={<ChartTooltipContent />} />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </ChartContainer>
-              </TabsContent>
-              <TabsContent value="helpfulnessScore">
-                <ChartContainer
-                  config={{
-                    helpfulnessScore: {
-                      label: "Helpfulness Score",
-                      color: "hsl(var(--chart-3))",
-                    },
-                  }}
-                  className="h-[300px]"
-                >
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={mockData}>
-                      <XAxis dataKey="month" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                      <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}%`} domain={[0, 100]} />
-                      <Line type="monotone" dataKey="helpfulnessScore" strokeWidth={2} dot={false} />
+                      <XAxis 
+                        dataKey="month" 
+                        stroke="#4b5563" 
+                        fontSize={12} 
+                        tickLine={false} 
+                        axisLine={false} 
+                      />
+                      <YAxis 
+                        stroke="#4b5563" 
+                        fontSize={12} 
+                        tickLine={false} 
+                        axisLine={false} 
+                        tickFormatter={(value) => `${value}`} 
+                      />
+                      <Line 
+                        type="monotone" 
+                        dataKey="totalRatings" 
+                        strokeWidth={2} 
+                        dot={false}
+                        stroke="rgb(59, 130, 246)" 
+                      />
                       <ChartTooltip content={<ChartTooltipContent />} />
                     </LineChart>
                   </ResponsiveContainer>
@@ -110,25 +88,23 @@ export default function StatsGraph() {
           </CardContent>
         </Card>
 
-        <Card className="bg-gray-800">
+        <Card className="bg-[#232a3b] border-gray-700">
           <CardHeader>
-            <CardTitle>Key Insights</CardTitle>
+            <CardTitle className="text-xl font-semibold text-white">Key Insights</CardTitle>
           </CardHeader>
-          <CardContent>
-            <ul className="space-y-2">
-              <li className="flex items-center">
-                <TrendingUp className="h-5 w-5 text-green-500 mr-2" />
-                <span>Your total ratings have increased by 320% in the last 6 months.</span>
-              </li>
-              <li className="flex items-center">
-                <Star className="h-5 w-5 text-yellow-500 mr-2" />
-                <span>Your average rating has improved from 3.5 to 4.5 stars.</span>
-              </li>
-              <li className="flex items-center">
-                <User className="h-5 w-5 text-blue-500 mr-2" />
-                <span>Your helpfulness score has grown by 18 points.</span>
-              </li>
-            </ul>
+          <CardContent className="space-y-2">
+            <div className="flex items-center space-x-2 text-green-400">
+              <TrendingUp className="h-5 w-5" />
+              <span>Your total ratings have increased by 320% in the last 6 months.</span>
+            </div>
+            <div className="flex items-center space-x-2 text-yellow-400">
+              <Star className="h-5 w-5" />
+              <span>Your average rating has improved from 3.5 to 4.5 stars.</span>
+            </div>
+            <div className="flex items-center space-x-2 text-blue-400">
+              <User className="h-5 w-5" />
+              <span>Your helpfulness score has grown by 18 points.</span>
+            </div>
           </CardContent>
         </Card>
       </main>

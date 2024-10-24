@@ -26,11 +26,11 @@ export default function UserProfile() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white">
       <main className="flex-1 p-4 space-y-4">
-        <Card className="bg-gray-800">
+        <Card className="bg-gray-800 border-gray-700">
           <CardHeader className="flex flex-row items-center space-y-0 pb-2">
             <div className="flex flex-col space-y-1 flex-1">
-              <CardTitle>{user.name}</CardTitle>
-              <CardDescription>{user.username}</CardDescription>
+              <CardTitle className="text-white">{user.name}</CardTitle>
+              <CardDescription className="text-gray-400">{user.username}</CardDescription>
             </div>
             <Avatar className="h-20 w-20">
               <AvatarImage src="/placeholder.svg?height=80&width=80" alt={user.name} />
@@ -41,43 +41,47 @@ export default function UserProfile() {
             {isEditing ? (
               <form onSubmit={(e) => { e.preventDefault(); handleSave(); }} className="space-y-4">
                 <div>
-                  <Label htmlFor="name">Name</Label>
+                  <Label htmlFor="name" className="text-white">Name</Label>
                   <Input 
                     id="name" 
                     value={user.name}
                     onChange={(e) => setUser({...user, name: e.target.value})}
+                    className="text-gray-400 border-gray-700"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="username">Username</Label>
+                  <Label htmlFor="username" className="text-white">Username</Label>
                   <Input 
                     id="username" 
                     value={user.username}
                     onChange={(e) => setUser({...user, username: e.target.value})}
+                    className="text-gray-400 border-gray-700"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="bio">Bio</Label>
+                  <Label htmlFor="bio" className="text-white">Bio</Label>
                   <Textarea 
                     id="bio" 
                     value={user.bio}
                     onChange={(e) => setUser({...user, bio: e.target.value})}
+                    className="text-gray-400 border-gray-700"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email" className="text-white">Email</Label>
                   <Input 
                     id="email" 
                     type="email" 
                     value={user.email}
                     onChange={(e) => setUser({...user, email: e.target.value})}
+                    className="text-gray-400 border-gray-700"
                   />
                 </div>
                 <Button type="submit">Save</Button>
               </form>
             ) : (
               <>
-                <p className="mb-4">{user.bio}</p>
+                <p className="mb-4 text-white">{user.bio}</p>
                 <Button onClick={() => setIsEditing(true)} className="w-full">
                   <Edit className="mr-2 h-4 w-4" /> Edit Profile
                 </Button>
@@ -87,17 +91,17 @@ export default function UserProfile() {
         </Card>
 
         <Tabs defaultValue="stats" className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="stats">Stats</TabsTrigger>
-            <TabsTrigger value="ratings">Ratings</TabsTrigger>
-            <TabsTrigger value="achievements">Achievements</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 bg-[#2a3346]">
+            <TabsTrigger value="stats" className="data-[state=active]:bg-[#3a4357] data-[state=active]:text-white">Stats</TabsTrigger>
+            <TabsTrigger value="ratings" className="data-[state=active]:bg-[#3a4357] data-[state=active]:text-white">Ratings</TabsTrigger>
+            <TabsTrigger value="achievements" className="data-[state=active]:bg-[#3a4357] data-[state=active]:text-white">Achievements</TabsTrigger>
           </TabsList>
           <TabsContent value="stats">
-            <Card className="bg-gray-800">
+            <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
-                <CardTitle>User Statistics</CardTitle>
+                <CardTitle className="text-white">User Statistics</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2">
+              <CardContent className="space-y-2 text-white">
                 <div className="flex justify-between">
                   <span>Total Ratings:</span>
                   <span>42</span>
@@ -114,11 +118,11 @@ export default function UserProfile() {
             </Card>
           </TabsContent>
           <TabsContent value="ratings">
-            <Card className="bg-gray-800">
+            <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
-                <CardTitle>Recent Ratings</CardTitle>
+                <CardTitle className="text-white">Recent Ratings</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-white">
                 <ul className="space-y-2">
                   <li className="flex justify-between">
                     <span>Local Cafe</span>
@@ -146,11 +150,11 @@ export default function UserProfile() {
             </Card>
           </TabsContent>
           <TabsContent value="achievements">
-            <Card className="bg-gray-800">
+            <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
-                <CardTitle>User Achievements</CardTitle>
+                <CardTitle className="text-white">User Achievements</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-white">
                 <ul className="space-y-2">
                   <li className="flex items-center">
                     <Star className="h-5 w-5 fill-yellow-500 text-yellow-500 mr-2" />

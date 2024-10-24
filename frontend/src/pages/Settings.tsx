@@ -14,7 +14,7 @@ type PrivacyMode = 'public' | 'private';
 type Language = 'english' | 'spanish';
 
 export default function Settings() {
-  const [theme, setTheme] = useState<Theme>(() => getSystemTheme());
+  const [theme, setTheme] = useState<Theme>(() => getSystemTheme())
   
   const [notifications, setNotifications] = useState<boolean>(true);
   const [language, setLanguage] = useState<Language>('english');
@@ -103,7 +103,7 @@ export default function Settings() {
               </RadioGroup>
             </div>
 
-            <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold">Save Changes</Button>
+            <Button className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold">Save Changes</Button>
           </CardContent>
         </Card>
 
@@ -115,14 +115,14 @@ export default function Settings() {
           <CardContent className="space-y-2">
             <Button 
               variant="outline" 
-              className="w-full justify-start text-gray-200 border-gray-600 hover:bg-blue-500 hover:text-white hover:border-blue-600 transition-all"
+              className="w-full justify-start text-gray-400 border-gray-600 hover:bg-blue-500 hover:text-white hover:border-blue-600 transition-all"
             >
               <Lock className="mr-2 h-4 w-4" />
               Change Password
             </Button>
             <Button 
               variant="outline" 
-              className="w-full justify-start text-gray-200 border-gray-600 hover:bg-green-500 hover:text-white hover:border-green-600 transition-all"
+              className="w-full justify-start text-gray-400 border-gray-600 hover:bg-green-500 hover:text-white hover:border-green-600 transition-all"
             >
               <Globe className="mr-2 h-4 w-4" />
               Manage Linked Accounts

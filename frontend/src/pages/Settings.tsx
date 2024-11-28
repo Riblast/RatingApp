@@ -6,16 +6,19 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
-import { Link } from "wouter"
-import { getSystemTheme } from "@/lib/utils"
+import { Link } from "react-router-dom"
+import { useTheme } from "@/components/ThemeProvider"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"
+import { useAuth } from "../context/AuthContext.jsx";
 
-type Theme = 'light' | 'dark';
+
+
 type PrivacyMode = 'public' | 'private';
 type Language = 'english' | 'spanish';
 
 export default function Settings() {
-  const [theme, setTheme] = useState<Theme>(() => getSystemTheme())
-  
+  const { setTheme } = useTheme()
+  const { logout } = useAuth()
   const [notifications, setNotifications] = useState<boolean>(true);
   const [language, setLanguage] = useState<Language>('english');
   const [privacyMode, setPrivacyMode] = useState<PrivacyMode>('public');
@@ -31,27 +34,28 @@ export default function Settings() {
           <CardContent className="space-y-6">
             <div className="space-y-2">
               <h3 className="text-lg font-semibold text-white">Appearance</h3>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-start gap-4">
                 <Label htmlFor="theme-toggle" className="text-gray-200">Theme</Label>
-                <RadioGroup
-                  id="theme-toggle"
-                  defaultValue={theme}
-                  onValueChange={(value: 'light' | 'dark') => setTheme(value)}
-                  className="flex space-x-2"
-                >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="light" id="light" className="border-gray-400 text-blue-500" />
-                    <Label htmlFor="light" className="text-gray-200"><Sun className="h-4 w-4" /></Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="dark" id="dark" className="border-gray-400 text-blue-500" />
-                    <Label htmlFor="dark" className="text-gray-200"><Moon className="h-4 w-4" /></Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="system" id="system" className="border-gray-400 text-blue-500" />
-                    <Label htmlFor="system" className="text-gray-200">System</Label>
-                  </div>
-                </RadioGroup>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="icon">
+                      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                      <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                      <span className="sr-only">Toggle theme</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem onClick={() => setTheme("light")}>
+                      Light
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("dark")}>
+                      Dark
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("system")}>
+                      System
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
 
@@ -123,9 +127,10 @@ export default function Settings() {
             <Button 
               variant="outline" 
               className="w-full justify-start text-gray-400 border-gray-600 hover:bg-green-500 hover:text-white hover:border-green-600 transition-all"
+              onClick={()=> logout()}
             >
               <Globe className="mr-2 h-4 w-4" />
-              Manage Linked Accounts
+              Log out
             </Button>
             <Button 
               variant="outline" 
@@ -138,27 +143,27 @@ export default function Settings() {
       </main>
 
       <nav className="flex justify-around items-center bg-gray-800 p-4">
-        <Link href="/profile">
+        <Link to="/profile">
           <Button variant="ghost" size="icon">
             <User className="h-6 w-6" />
           </Button>
         </Link>
-        <Link href="/statistics">
+        <Link to="/statistics">
           <Button variant="ghost" size="icon">
             <BarChart2 className="h-6 w-6" />
           </Button>
         </Link>
-        <Link href="/">
+        <Link to="/">
           <Button variant="ghost" size="icon">
             <Star className="h-6 w-6" />
           </Button>
         </Link>
-        <Link href="/friends">
+        <Link to="/friends">
           <Button variant="ghost" size="icon">
             <Users className="h-6 w-6" />
           </Button>
         </Link>
-        <Link href="/settings">
+        <Link to="/settings">
           <Button variant="ghost" size="icon" className="text-yellow-500">
             <SettingsIcon className="h-6 w-6" fill="currentColor" />
           </Button>

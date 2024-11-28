@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
 import { BarChart2, Edit, Star, User, Users, Settings } from "lucide-react"
-import { Link } from "wouter"
+import { Link } from "react-router-dom"
 
 export default function UserProfile() {
   const [isEditing, setIsEditing] = useState(false)
@@ -175,27 +175,27 @@ export default function UserProfile() {
         </Tabs>
       </main>
       <nav className="flex justify-around items-center bg-gray-800 p-4">
-        <Link href="/profile">
+        <Link to="/profile">
           <Button variant="ghost" size="icon" className="text-yellow-500">
             <User className="h-6 w-6" fill="currentColor" />
           </Button>
         </Link>
-        <Link href="/statistics">
+        <Link to="/statistics">
           <Button variant="ghost" size="icon">
             <BarChart2 className="h-6 w-6" />
           </Button>
         </Link>
-        <Link href="/">
+        <Link to="/">
           <Button variant="ghost" size="icon">
             <Star className="h-6 w-6" />
           </Button>
         </Link>
-        <Link href="/friends">
+        <Link to="/friends">
           <Button variant="ghost" size="icon">
             <Users className="h-6 w-6" />
           </Button>
         </Link>
-        <Link href="/settings">
+        <Link to="/settings">
           <Button variant="ghost" size="icon">
             <Settings className="h-6 w-6" />
           </Button>

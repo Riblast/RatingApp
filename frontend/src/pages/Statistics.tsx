@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
 import { BarChart2, Star, User, TrendingUp, Users, Settings } from "lucide-react"
-import { Link } from "wouter"
+import { Link } from "react-router-dom"
 
 // Mock data for the graph
 const mockData = [
@@ -110,27 +110,27 @@ export default function StatsGraph() {
       </main>
 
       <nav className="flex justify-around items-center bg-gray-800 p-4">
-        <Link href="/profile">
+        <Link to="/profile">
           <Button variant="ghost" size="icon">
             <User className="h-6 w-6" />
           </Button>
         </Link>
-        <Link href="/statistics">
+        <Link to="/statistics">
           <Button variant="ghost" size="icon" className="text-yellow-500">
             <BarChart2 className="h-6 w-6" fill="currentColor" />
           </Button>
         </Link>
-        <Link href="/">
+        <Link to="/">
           <Button variant="ghost" size="icon">
             <Star className="h-6 w-6" />
           </Button>
         </Link>
-        <Link href="/friends">
+        <Link to="/friends">
           <Button variant="ghost" size="icon">
             <Users className="h-6 w-6" />
           </Button>
         </Link>
-        <Link href="/settings">
+        <Link to="/settings">
           <Button variant="ghost" size="icon">
             <Settings className="h-6 w-6" />
           </Button>
